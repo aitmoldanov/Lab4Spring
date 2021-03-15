@@ -1,40 +1,101 @@
 package com.example.payroll;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "employees")
 public class Employee {
-    private int id;
-    private String userName;
-    private EmployeeType employeeType;
-    private double salary;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private double fixedSalary;
+    private double hourRate;
+    private int hoursWorked;
+    private float commRate;
 
-    public Employee(int id, String userName, EmployeeType type, double salary) {
+    @Enumerated(EnumType.STRING)
+    private EmployeeType emplType;
+
+    public Employee(Long id, String name, double fixedSalary, double hourRate, int hoursWorked, float commRate, EmployeeType emplType) {
         this.id = id;
-        this.userName = userName;
-        this.employeeType = type;
-        this.salary = salary;
+        this.name = name;
+        this.fixedSalary = fixedSalary;
+        this.hourRate = hourRate;
+        this.hoursWorked = hoursWorked;
+        this.commRate = commRate;
+        this.emplType = emplType;
     }
-    public int getId() {
+
+    public Employee() {
+
+    }
+
+    public Long getId() {
         return id;
     }
-    public String getUserName() {
-        return userName;
+
+    public void setId(Long id) {
+        this.id = id;
     }
-    public EmployeeType getEmployeeType() {
-        return employeeType;
+
+    public String getName() {
+        return name;
     }
-    public double getSalary() {
-        return salary;
+
+    public void setName(String name) {
+        this.name = name;
     }
-    public void setSalary(double salary) {
-        this.salary = salary;
+
+    public double getFixedSalary() {
+        return fixedSalary;
+    }
+
+    public void setFixedSalary(double fixedSalary) {
+        this.fixedSalary = fixedSalary;
+    }
+
+    public double getHourRate() {
+        return hourRate;
+    }
+
+    public void setHourRate(double hourRate) {
+        this.hourRate = hourRate;
+    }
+
+    public int getHoursWorked() {
+        return hoursWorked;
+    }
+
+    public void setHoursWorked(int hoursWorked) {
+        this.hoursWorked = hoursWorked;
+    }
+
+    public float getCommRate() {
+        return commRate;
+    }
+
+    public void setCommRate(float commRate) {
+        this.commRate = commRate;
+    }
+
+    public EmployeeType getEmplType() {
+        return emplType;
+    }
+
+    public void setEmplType(EmployeeType emplType) {
+        this.emplType = emplType;
     }
 
     @Override
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", name='" + userName + '\'' +
-                ", type=" + employeeType +
-                ", salary=" + salary +
+                ", name='" + name + '\'' +
+                ", fixedSalary=" + fixedSalary +
+                ", hourRate=" + hourRate +
+                ", hoursWorked=" + hoursWorked +
+                ", commRate=" + commRate +
+                ", emplType=" + emplType +
                 '}';
     }
 }

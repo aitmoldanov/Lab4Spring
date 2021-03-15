@@ -1,8 +1,6 @@
-package com.example.payroll.Dao;
-import com.example.payroll.Employee;
-import com.example.payroll.EmployeeType;
-import com.example.payroll.Event.ChangeSalaryEvent;
-import com.example.payroll.Service.SalaryEstimateService;
+/*
+package com.example.payroll;
+import com.example.payroll.EventNotifier.ChangeSalaryEventNotifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
@@ -30,11 +28,11 @@ public class EmployeeDAO implements ApplicationEventPublisherAware {
     private List<Employee> employees = new ArrayList<>();
     public void salaryChange(Employee employee, double percentage) {
         System.out.println("EmployeeDao.ApplicationEventPublisherAware");
-        System.out.println("SALARY OF EMPLOYEE CHANGED");
+        System.out.println("SALARY OF EMPLOYEE SUCCESSFULLY  CHANGED");
         System.out.println("employee = " + employee.getUserName() + "; type: "+ employee.getEmployeeType());
-        employee = salaryEstimateService.calculate(employee, percentage);
+        employee = salaryEstimateService.estimate(employee, percentage);
         updateEmployees(employee);
-        this.applicationEventPublisher.publishEvent(new ChangeSalaryEvent(this, employee));
+        this.applicationEventPublisher.publishEvent(new ChangeSalaryEventNotifier(this, employee));
     }
     public void updateEmployees(Employee employee) {
         try {
@@ -51,14 +49,14 @@ public class EmployeeDAO implements ApplicationEventPublisherAware {
         this.applicationEventPublisher = applicationEventPublisher;
     }
     @PostConstruct
-    public void init() throws SQLException {
+    public void init(){
         this.createDbConnection();
     }
     public List<Employee> getEmployees() {
         return employees;
     }
 
-    public void createDbConnection() throws SQLException {
+    public void createDbConnection(){
         try {
             connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
             statement = connection.createStatement();
@@ -88,3 +86,4 @@ public class EmployeeDAO implements ApplicationEventPublisherAware {
         System.out.println("UserService.closeConnections");
     }
 }
+*/
